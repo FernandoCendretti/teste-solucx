@@ -1,8 +1,8 @@
 module.exports = {
   dialect: 'mysql',
-  host: 'localhost',
+  host: '127.0.0.1',
   username: 'root',
-  password: 123123,
+  password: '123123',
   database: 'solucx_teste',
   define: {
     timestamps: true,
