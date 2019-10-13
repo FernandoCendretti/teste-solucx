@@ -1,14 +1,14 @@
 import * as Yup from 'yup';
-import Collaborator from '../models/Collaborator';
+import Store from '../models/Store';
 
 class CollaboratorController {
   /**
-   * Show all Collaborators
+   * Show all Stores
    * @param {Express} req request
    * @param {Express} res response
    */
   async index(req, res) {
-    const collaborator = await Collaborator.findAll({
+    const collaborator = await Store.findAll({
       attributes: ['id', 'name'],
     });
 
@@ -16,7 +16,7 @@ class CollaboratorController {
   }
 
   /**
-   * Create a new Collaborators
+   * Create a new Stores
    * @param {Express} req request
    * @param {Express} res response
    */
@@ -29,13 +29,13 @@ class CollaboratorController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
-    const { id, name } = await Collaborator.create(req.body);
+    const { id, name } = await Store.create(req.body);
 
     return res.json({ id, name });
   }
 
   /**
-   * Update Collaborators
+   * Update Stores
    * @param {Express} req request
    * @param {Express} res response
    */
@@ -47,20 +47,20 @@ class CollaboratorController {
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
-    const collaborator = await Collaborator.findByPk(req.params.id);
+    const store = await Store.findByPk(req.params.id);
 
-    const { id, name } = await collaborator.update(req.body);
+    const { id, name } = await store.update(req.body);
 
     return res.json({ id, name });
   }
 
   /**
-   * Delete Collaborators
+   * Delete Stores
    * @param {Express} req request
    * @param {Express} res response
    */
   async delete(req, res) {
-    await Collaborator.destroy({ where: { id: req.params.id } });
+    await Store.destroy({ where: { id: req.params.id } });
 
     return res.json({ message: 'Deleted User' });
   }
