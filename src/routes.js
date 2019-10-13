@@ -1,16 +1,10 @@
 import { Router } from 'express';
-import Client from './app/models/Client';
+
+import ClientController from './app/controllers/ClientController';
 
 const routes = new Router();
 
-routes.get('/', async (req, res) => {
-  const client = await Client.create({
-    name: 'Fernando',
-    email: 'fernando@teste.com',
-    phone: '(12) 9999-9999',
-    cpf: '222.222.222-22',
-  });
-  return res.json(client);
-});
+routes.post('/clients', ClientController.store);
+routes.put('/clients/:id', ClientController.update);
 
 export default routes;
