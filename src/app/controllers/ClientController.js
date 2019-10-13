@@ -4,6 +4,19 @@ import Client from '../models/Client';
 // 23736243898
 class ClientController {
   /**
+   * Show all Clients
+   * @param {Express} req request
+   * @param {Express} res response
+   */
+  async index(req, res) {
+    const client = await Client.findAll({
+      attributes: ['id', 'name', 'email', 'phone', 'cpf'],
+    });
+
+    return res.json(client);
+  }
+
+  /**
    * Create a new client
    * @param {Express} req request
    * @param {Express} res response
@@ -101,6 +114,17 @@ class ClientController {
     const { id, name } = await client.update(req.body);
 
     return res.json({ id, name, email, phone, cpf });
+  }
+
+  /**
+   * Delete Client
+   * @param {Express} req request
+   * @param {Express} res response
+   */
+  async delete(req, res) {
+    await Client.destroy({ where: { id: req.params.id } });
+
+    return res.json({ message: 'Deleted User' });
   }
 }
 
