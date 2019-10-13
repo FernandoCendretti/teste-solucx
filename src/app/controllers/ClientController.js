@@ -1,7 +1,7 @@
 import { Op } from 'sequelize';
 import * as Yup from 'yup';
 import Client from '../models/Client';
-// 23736243898
+
 class ClientController {
   /**
    * Show all Clients
