@@ -49,6 +49,10 @@ class CollaboratorController {
     }
     const store = await Store.findByPk(req.params.id);
 
+    if (!store) {
+      return res.status(400).json({ error: 'This store not exits' });
+    }
+
     const { id, name } = await store.update(req.body);
 
     return res.json({ id, name });
@@ -60,7 +64,11 @@ class CollaboratorController {
    * @param {Express} res response
    */
   async delete(req, res) {
-    await Store.destroy({ where: { id: req.params.id } });
+    const store = await Store.destroy({ where: { id: req.params.id } });
+
+    if (!store) {
+      return res.status(400).json({ error: 'This store not exits' });
+    }
 
     return res.json({ message: 'Deleted User' });
   }

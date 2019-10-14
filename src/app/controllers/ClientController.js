@@ -77,6 +77,10 @@ class ClientController {
 
     const client = await Client.findByPk(req.params.id);
 
+    if (!client) {
+      return res.status(400).json({ error: 'This client not exits' });
+    }
+
     if (email !== client.email) {
       const clientExists = await Client.findOne({
         where: {
@@ -85,7 +89,7 @@ class ClientController {
       });
 
       if (clientExists) {
-        return res.status(400).json({ error: 'Email already exists' });
+        return res.status(400).json({ error: 'Client already exists' });
       }
     }
     if (cpf !== client.cpf) {
@@ -122,7 +126,11 @@ class ClientController {
    * @param {Express} res response
    */
   async delete(req, res) {
-    await Client.destroy({ where: { id: req.params.id } });
+    const client = await Client.destroy({ where: { id: req.params.id } });
+
+    if (!client) {
+      return res.status(400).json({ error: 'This client not exits' });
+    }
 
     return res.json({ message: 'Deleted User' });
   }
