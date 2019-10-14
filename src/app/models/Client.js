@@ -13,6 +13,8 @@ class Client extends Model {
         sequelize,
       }
     );
+
+    return this;
   }
 }
 

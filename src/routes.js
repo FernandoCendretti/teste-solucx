@@ -3,6 +3,7 @@ import { Router } from 'express';
 import ClientController from './app/controllers/ClientController';
 import CollaboratorController from './app/controllers/CollaboratorController';
 import StoreController from './app/controllers/StoreController';
+import ExperienceController from './app/controllers/ExperienceController';
 
 const routes = new Router();
 
@@ -20,5 +21,9 @@ routes.get('/stores', StoreController.index);
 routes.post('/stores', StoreController.store);
 routes.put('/stores/:id', StoreController.update);
 routes.delete('/stores/:id', StoreController.delete);
+
+routes.get('/experiences', ExperienceController.index);
+routes.post('/experiences', ExperienceController.store);
+routes.put('/experiences/:id', ExperienceController.update);
 
 export default routes;

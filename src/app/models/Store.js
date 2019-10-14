@@ -10,6 +10,8 @@ class Store extends Model {
         sequelize,
       }
     );
+
+    return this;
   }
 }
 

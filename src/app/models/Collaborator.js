@@ -10,6 +10,8 @@ class Collaborator extends Model {
         sequelize,
       }
     );
+
+    return this;
   }
 }
 
