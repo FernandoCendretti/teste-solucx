@@ -29,8 +29,10 @@ sudo docker run -d -p 3306:3306 --name solucx -e "MYSQL_DATABASE=solucx_teste" -
 sudo docker ps
 ```
 
-4- Para executar o sistema basta utilizar o comando:
+4- Para executar o sistema basta utilizar o comando no diretório do sistema:
 
 ```
 yarn dev
 ```
+5- Basta utilizar o Insomnnia ou o Postman para realizar as consultas. utilize a porta "3333"
+do seu servidor. Exemplo http://localhost:3333/route/
